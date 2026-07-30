@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-color: #FFD6D1;
+      --bg-color: #FFD8DF;
       --card-bg: rgba(255, 255, 255, 0.92);
       --text-color: #4a3e3d;
       --accent-color: #e27d60;
@@ -24,7 +24,7 @@
       height: 100%;
       margin: 0;
       padding: 0;
-      overflow: hidden; /* Absolutely no scrollbars */
+      overflow: hidden; /* No scrollbars */
     }
 
     body {
@@ -36,7 +36,7 @@
       justify-content: center;
     }
 
-    /* Wide, compact card without vertical stretch */
+    /* Wide compact card */
     .app-card {
       background: var(--card-bg);
       backdrop-filter: blur(12px);
@@ -130,8 +130,8 @@
     /* Horizontal Bottom Panel */
     .bottom-panel {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 16px;
       width: 100%;
       align-items: center;
     }
@@ -151,8 +151,28 @@
       letter-spacing: 0.5px;
     }
 
+    .input-box-group {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .input-sub-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 50%;
+    }
+
+    .input-sub-item span {
+      font-size: 0.65rem;
+      font-weight: 700;
+      opacity: 0.6;
+      margin-top: 2px;
+    }
+
     input[type="number"], select {
-      padding: 8px 12px;
+      padding: 8px 10px;
       border-radius: 12px;
       border: 1.5px solid rgba(0,0,0,0.1);
       background: rgba(255, 255, 255, 0.8);
@@ -275,12 +295,18 @@
 
     <!-- Horizontal Bottom Controls -->
     <div class="bottom-panel">
-      <!-- Study & Pause Inputs -->
+      <!-- Study & Pause Inputs with Labels -->
       <div class="panel-item">
-        <label>Timer Settings (Min)</label>
-        <div style="display:flex; gap:6px;">
-          <input type="number" id="study-time" value="25" min="1" max="120" title="Study Minutes" />
-          <input type="number" id="pause-time" value="5" min="1" max="60" title="Pause Minutes" />
+        <label>Duration (Min)</label>
+        <div class="input-box-group">
+          <div class="input-sub-item">
+            <input type="number" id="study-time" value="25" min="1" max="120" />
+            <span>Study time</span>
+          </div>
+          <div class="input-sub-item">
+            <input type="number" id="pause-time" value="5" min="1" max="60" />
+            <span>Pause time</span>
+          </div>
         </div>
       </div>
 
@@ -288,21 +314,21 @@
       <div class="panel-item">
         <label>Theme</label>
         <div class="theme-picker">
-          <div class="theme-dot" style="background:#FFD6D1;" title="Peach" onclick="setTheme('#FFD6D1', '#e27d60', '#c96549')"></div>
-          <div class="theme-dot" style="background:#e8f5e9;" title="Sage" onclick="setTheme('#e8f5e9', '#66bb6a', '#4cae50')"></div>
-          <div class="theme-dot" style="background:#e3f2fd;" title="Sky" onclick="setTheme('#e3f2fd', '#42a5f5', '#1e88e5')"></div>
-          <div class="theme-dot" style="background:#FFEE8C;" title="Warm Yellow" onclick="setTheme('#FFEE8C', '#d49b29', '#b8831c')"></div>
+          <div class="theme-dot" style="background:#FFD8DF;" title="Pink" onclick="setTheme('#FFD8DF', '#e27d60', '#c96549')"></div>
+          <div class="theme-dot" style="background:#F0FFDF;" title="Light Green" onclick="setTheme('#F0FFDF', '#66bb6a', '#4cae50')"></div>
+          <div class="theme-dot" style="background:#C0F2EE;" title="Cyan" onclick="setTheme('#C0F2EE', '#26a69a', '#00897b')"></div>
+          <div class="theme-dot" style="background:#D7C097;" title="Warm Hazel" onclick="setTheme('#D7C097', '#b08958', '#967243')"></div>
         </div>
       </div>
 
-      <!-- Native Ambient Sounds -->
+      <!-- Verified Ambient Sounds -->
       <div class="panel-item">
         <label>Background Sound</label>
         <select id="ambient-select" onchange="changeAmbientSound()">
           <option value="">Off</option>
-          <option value="https://assets.mixkit.co/active_storage/sfx/2513/2513-preview.mp3">🌧️ Soft Rain</option>
-          <option value="https://assets.mixkit.co/active_storage/sfx/2432/2432-preview.mp3">🌊 Waves</option>
-          <option value="https://assets.mixkit.co/active_storage/sfx/2688/2688-preview.mp3">🐦 Birds</option>
+          <option value="https://actions.google.com/sounds/v1/weather/rain_heavy_loud.ogg">🌧️ Soft Rain</option>
+          <option value="https://actions.google.com/sounds/v1/water/ocean_waves.ogg">🌊 Ocean Waves</option>
+          <option value="https://actions.google.com/sounds/v1/environments/forest_birds.ogg">🐦 Forest Birds</option>
         </select>
         <audio id="ambient-audio" loop></audio>
       </div>
