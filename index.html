@@ -135,7 +135,8 @@
       border: 2px solid #eee;
       font-family: 'Nunito', sans-serif;
       font-weight: 700;
-      width: 100px;
+      width: 100%;
+      max-width: 160px;
       text-align: center;
     }
 
@@ -264,15 +265,21 @@
       <div class="setting-group">
         <label for="video-select">Choose Ambiance:</label>
         <select id="video-select" onchange="changeVideo()">
-          <option value="jfKfPfyJRdk">Lofi Girl - Relax/Study</option>
-          <option value="4xDzrJKXOOY">Lofi Synthwave</option>
-          <option value="TURbeWK2wwg">Cozy Rain & Coffee Shop</option>
-          <option value="5qap5aO4i9A">Studio Ghibli Piano</option>
+          <option value="DWcJFNfaw9c">Cozy Lofi Beats</option>
+          <option value="S_MOd40L96U">Rainy Coffee Shop</option>
+          <option value="lTRiuFIWV54">Ghibli Piano Playlist</option>
+          <option value="W0LHTWG-UmQ">Quiet Library Sounds</option>
         </select>
       </div>
 
       <div class="video-container">
-        <iframe id="youtube-player" src="https://www.youtube.com/embed/jfKfPfyJRdk" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe 
+          id="youtube-player" 
+          src="https://www.youtube.com/embed/DWcJFNfaw9c?enablejsapi=1&origin=*&rel=0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
       </div>
     </div>
   </div>
@@ -306,15 +313,14 @@
     const modalOverlay = document.getElementById('modal-overlay');
     const modalText = document.getElementById('modal-text');
 
-    // Chime generator using Web Audio API (no external MP3 needed)
     function playChime() {
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
       
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5 note
-      osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.5); // E5 note
+      osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
+      osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.5); 
 
       gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1);
@@ -397,7 +403,7 @@
 
     function changeVideo() {
       const videoId = document.getElementById('video-select').value;
-      document.getElementById('youtube-player').src = `https://www.youtube.com/embed/${videoId}`;
+      document.getElementById('youtube-player').src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=*&rel=0`;
     }
 
     // Event Listeners
@@ -415,7 +421,6 @@
       if (!isStudying) resetTimer();
     });
 
-    // Initial setup
     updateDisplay();
   </script>
 </body>
